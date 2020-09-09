@@ -3,11 +3,12 @@ Mural de Mensagens - NestJS - Graphql + TypeORM
 -----------------------------------------------
 
 ## Requisitos Funcionais
-- [] O Usuário precisa se cadastrar apenas usando o e-mail
-- [] O Usuário precisa autenticar via e-mail
-- [] O Usuário precisa poder posta uma mensagem no mural
-- [] (Opcional) A Mensagem pode ser deletada
-- [] Gerar comunicação final com Swagger
+- [x] O Usuário precisa se cadastrar apenas usando o e-mail
+- [x] O Usuário precisa autenticar via e-mail
+- [x] O Usuário precisa poder posta uma mensagem no mural
+- [x] (Opcional) A Mensagem pode ser deletada
+- [] Gerar documentação final com Swagger
+- [] Adicionar o DataLoader
 
 ## Requisitos não-funcionais
 - Nest.JS
@@ -17,4 +18,4 @@ Mural de Mensagens - NestJS - Graphql + TypeORM
 
 
 ## Regras de negocio
-- [] O usuário não deletar postagens de outro usuário
+- [x] O usuário não deletar postagens de outro usuário

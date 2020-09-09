@@ -28,7 +28,7 @@ import UserInput from './user.input';
 
 
 @InputType()
-class MessageInput {
+export default class MessageInput {
   @Field()
   readonly content: string;
 
@@ -36,4 +36,11 @@ class MessageInput {
   readonly userId: number;
 }
 
-export default MessageInput;
+@InputType()
+export class MessageDeleteInput {
+  @Field()
+  readonly idMessage: number;
+
+  @Field()
+  readonly userId: number;
+}

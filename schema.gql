@@ -5,6 +5,7 @@
 type Message {
   id: Float!
   userId: Float!
+  content: String!
   createdAt: DateTime!
   updatedAt: DateTime!
   user: User!
@@ -32,8 +33,9 @@ type Query {
 }
 
 type Mutation {
-  createUser(data: UserInput!): User!
+  createOrLoginUser(data: UserInput!): User!
   createMessage(data: MessageInput!): Message!
+  deleteMessage(data: MessageDeleteInput!): Message
 }
 
 input UserInput {
@@ -42,5 +44,10 @@ input UserInput {
 
 input MessageInput {
   content: String!
+  userId: Float!
+}
+
+input MessageDeleteInput {
+  idMessage: Float!
   userId: Float!
 }

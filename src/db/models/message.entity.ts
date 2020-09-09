@@ -25,6 +25,7 @@ export default class Message {
   @Column({ name: 'user_id' })
   userId: number;
 
+  @Field()
   @Column()
   content: string;
 
