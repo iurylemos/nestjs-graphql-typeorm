@@ -1,8 +1,11 @@
-import { Args, Mutation, Query, Resolver, Parent, ResolveField } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver, Parent, ResolveField, Subscription } from '@nestjs/graphql';
 import User from 'src/db/models/user.entity';
 import RepoService from 'src/repo.service';
 import Message from 'src/db/models/message.entity';
 import MessageInput, { MessageDeleteInput } from './input/message.input';
+import { PubSub } from 'graphql-subscriptions';
+
+export const pubSub = new PubSub();
 
 @Resolver(() => Message)
 class MessageResolver {
@@ -28,11 +31,18 @@ class MessageResolver {
   @Mutation(() => Message)
   public async createMessage(@Args('data') input: MessageInput):
     Promise<Message> {
-    const author = this.repoService.messageRepo.create({
+    const message = this.repoService.messageRepo.create({
       userId: input.userId,
       content: input.content,
     });
-    return this.repoService.messageRepo.save(author);
+   
+    const response = await this.repoService.messageRepo.save(message);
+
+    pubSub.publish('messageAdded', { messageAdded: {
+      ...message
+    }})
+
+    return response;
   }
 
   @Mutation(() => Message, { nullable: true })
@@ -49,6 +59,15 @@ class MessageResolver {
 
     return copy;
   }
+
+  //Quando alguém criar uma mensagem vai cair aqui
+  @Subscription(returns => Message, {
+    name: 'messageAdded',
+  })
+  messageAdded() {
+    return pubSub.asyncIterator('messageAdded');
+  }
+
 
   //getUser é o nome da função
   @ResolveField(() => User)

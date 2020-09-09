@@ -7,6 +7,7 @@ Mural de Mensagens - NestJS - Graphql + TypeORM
 - [x] O Usuário precisa autenticar via e-mail
 - [x] O Usuário precisa poder posta uma mensagem no mural
 - [x] (Opcional) A Mensagem pode ser deletada
+- [x] O Usuário precisa ver em tempo real as novas mensagens
 - [] Gerar documentação final com Swagger
 - [] Adicionar o DataLoader
 

@@ -16,7 +16,8 @@ const graphQLImports = [
 @Module({
   imports: [TypeOrmModule.forRoot(ormOptions), RepoModule, ...graphQLImports, GraphQLModule.forRoot({
     autoSchemaFile: 'schema.gql',
-    playground: true
+    playground: true,
+    installSubscriptionHandlers: true
   })],
   controllers: [AppController],
   providers: [AppService],
